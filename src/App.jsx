@@ -196,107 +196,119 @@ function App() {
 
       {/* Main card */}
       <div className="w-full max-w-[800px] mx-auto bg-card/40 backdrop-blur-sm border border-border/20 rounded-lg  shadow-lg overflow-hidden">
-      {/* Header */}
-      <div className="p-7 text-center">
-        <h1 className="text-3xl font-bond text-foreground mb-2">VIA Bridge</h1>
-        <p className="text-muted-foreground">Bridge your BTC to VIA L2</p>
-      </div>
-
-      {/* Divider */}
-      <div className="h-px bg-border/30 mx-6"></div>
-
-      {/* content */}
-
-      <div className="p-6">
-        {/* Bridge panel here*/}
-
-        <div className="flex items-center gap-3">
-        <div className="text-muted-foreground text-sm mb-1 md:hidden">From</div>
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center">
-            <span className="text-white font-bold">₿</span>
-          </div>
-          <div>
-            <div className="text-muted-foreground text-sm hidden md:block">From</div>
-            <div className="font-semibold">Bitcoin</div>
-          </div>
+        {/* Header */}
+        <div className="p-7 text-center">
+          <h1 className="text-3xl font-bond text-foreground mb-2">VIA Bridge</h1>
+          <p className="text-muted-foreground">Bridge your BTC to VIA L2</p>
         </div>
-      </div>
 
-      {/* Arrow */}
-      <div className="hidden md:block text-muted-foreground"></div>
-      <div className="h-px w-full bg-border/30 md:hidden"></div>
+        {/* Divider */}
+        <div className="h-px bg-border/30 mx-6"></div>
 
-      {/* To Via */}
-      <div className="flex items-center gap-3">
-        <div className="text-muted-foreground text-sm mb-1 md:hidden">To</div>
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center">
-            <img src="/public/via-logo.png" alt="Via" className="w-full h-full object-cover" />
-          </div>
-          <div>
-            <div className="text-muted-foreground text-sm hidden md:block">To</div>
-            <div className="font-semibold">Via L2</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Divider */}
-      <div className="h-px bg-border/30 my-4"></div>
-
-      {/* Amount */}
-      <div className="flex flex-sol sm:flex-row gap-2 sm:gap-6">
-        <div className="text-muted-foreground">Amount:</div>
-        <div className="font-medium">{SATS_AMOUNT_TO_BRIDGE} sats</div>
-        <div className="text-muted-foreground">+</div>
-        <div className="text-muted-foreground">{SATS_FEE} sats fee</div>
-      </div>
-      </div>
-
-      {/* Bridge address */}
-      <div className="space-y-4">
-        {/* VIA Bridge Address */}
-        <div>
-          <label className="text-sm font-medium mb-2 block">VIA Bridge Address</label>
-          <div className="flex items-cennter gap-2">
-            <div className="flex-1 p-3 rounded-md bg-input/30 backdrop-blur-sm border border-input overflow-x-auto">
-              <code className="text-sm font-mono text-foreground whitespace-nowrap">
-                {VIA_BRIDGE_ADDRESS}
-              </code>
+        {/* content */}
+        <div className="p-6 space-y-6">
+          {/* From/To secion*/}
+          <div className="flex items-start space-x-4">
+            {/* From Bitcoin */}
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold">
+                ₿
+              </div>
+              <div>
+                <div className="text-muted-foreground text-sm hidden md:block">From</div>
+                <div className="font-semibold">Bitcoin</div>
+              </div>
             </div>
-            <Button variant="outline" size="icon" className="h-10 w-10 bg-background/50 backdrop-blur-sm" onClick={() => navigator.clipboard.writeText(VIA_BRIDGE_ADDRESS)}>
-              <CopyIcon className="w-4 h-4" />
-            </Button>
+
+            {/* To Via L2 */}
+            <div className="flex items-center space-x-3 ml-auto">
+              <div>
+                <div className="text-muted-foreground text-sm text-right">To</div>
+                <div className="font-semibold text-right">Via L2</div>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center overflow-hidden">
+                <img src="/public/via-logo.png" alt="Via" className="w-full h-full object-cover" />
+              </div>
+            </div>
           </div>
+
+          {/* Amount */}
+          <div className="flex flex-sol sm:flex-row gap-2 sm:gap-6">
+            <div className="text-muted-foreground">Amount:</div>
+            <div className="font-medium">{SATS_AMOUNT_TO_BRIDGE} sats</div>
+            <div className="text-muted-foreground">+</div>
+            <div className="text-muted-foreground">{SATS_FEE} sats fee</div>
+          </div>
+
+          {/* VIA Bridge Address */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium block">VIA Bridge Address</label>
+            <div className="flex items-center gap-2">
+              <div className="flex-1 p-3 rounded-md bg-input/30 backdrop-blur-sm border border-input overflow-x-auto">
+                <code className="text-sm font-mono text-foreground whitespace-nowrap">
+                  {VIA_BRIDGE_ADDRESS}
+                </code>
+              </div>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="h-10 w-10 bg-background/50 backdrop-blur-sm" 
+                onClick={() => navigator.clipboard.writeText(VIA_BRIDGE_ADDRESS)}
+              >
+                <CopyIcon className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* L2 Receiver Address */}
+          <div>
+            <label className="text-sm font-medium mb-2 block">L2 Receiver Address</label>
+            <div className="flex items-center gap-2">
+              <div className="flex-1 p-3 rounded-md bg-input/30 backdrop-blur-sm border border-input overflow-x-auto">
+                <code className="text-sm font-mono text-foreground white whitespace-nowrap">
+                  {L2_RECEIVER_ADDRESS}
+                </code>
+              </div>
+              <Button variant="outline" size="icon" className="h-10 w-10 bg-background/50 backdrop-blur-sm" onClick={() => navigator.clipboard.writeText(L2_RECEIVER_ADDRESS)}>
+                <CopyIcon className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Rainbow Button */}
+          <div className="mt-4 mb-2">
+            <RainbowButton 
+              onClick={handleDeposit} 
+              disabled={loading} 
+              size="lg" 
+              className="w-full"
+            >
+              {loading ? "Processing..." : "Deposit BTC to VIA"}
+            </RainbowButton>
+          </div>
+          
+          {/* Transaction Result */}
+          {error && (
+            <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-md text-destructive text-sm">
+              {error}
+            </div>
+          )}
+          
+          {txId && (
+            <div className="space-y-2">
+              <div className="text-sm font-medium">Transaction Successful!</div>
+              <a 
+                href={`${BITCOIN_TESTNET_EXPLORER}${txId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-blue-500 hover:underline flex items-center gap-1"
+              >
+                View on Explorer
+              </a>
+            </div>
+          )}
         </div>
       </div>
-
-
-
-
-      {/* L2 Receiver Address */}
-      <div>
-        <label className="text-sm font-medium mb-2 block">L2 Receiver Address</label>
-        <div className="flex items-center gap-2">
-          <div className="flex-1 p-3 rounded-md bg-input/30 backdrop-blur-sm border border-input overflow-x-auto">
-            <code className="text-sm font-mono text-foreground white whitespace-nowrap">
-              {L2_RECEIVER_ADDRESS}
-            </code>
-          </div>
-          <Button variant="outline" size="icon" className="h-10 w-10 bg-background/50 backdrop-blur-sm" onClick={() => navigator.clipboard.writeText(L2_RECEIVER_ADDRESS)}>
-            <CopyIcon className="w-4 h-4" />
-          </Button>
-        </div>
-      </div>
-
-      {/* Rainbow Button */}
-      {/* Rainbow Button */}
-      <div className="mt-8 flex justify-center">
-        <RainbowButton onClick={handleDeposit} disabled={loading} size="lg" className="w-full max-w-md">{loading ? "Processing..." : "Deposit BTC to VIA"}</RainbowButton>
-      </div>
-
-      </div>
-
     </div>
   );
 }
