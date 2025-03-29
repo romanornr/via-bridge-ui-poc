@@ -2,11 +2,11 @@
 @import "tw-animate-css";
 
 :root {
-  --background: hsl(222.2 84% 4.9%);
+  --background: #09090B;
   --foreground: hsl(210 40% 98%);
-  --card: hsl(222.2 84% 4.9%);
+  --card: #09090B;
   --card-foreground: hsl(210 40% 98%);
-  --popover: hsl(222.2 84% 4.9%);
+  --popover: #09090B;
   --popover-foreground: hsl(210 40% 98%);
   --primary: hsl(217.2 91.2% 59.8%);
   --primary-foreground: hsl(222.2 47.4% 11.2%);
