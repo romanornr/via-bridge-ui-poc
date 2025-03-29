@@ -185,9 +185,9 @@ function App() {
   }
 
   return (
-    <div className="max-w-[600px] mx-auto mt-12 p-6 bg-background text-foreground rounded-lg shadow-md">
+    <div className="max-w-[600px] mx-auto mt-12 p-6 bg-[var(--color-background)] text-[var(--color-foreground)] rounded-lg shadow-md">
       <h1 className="text-3xl font-bold text-center mb-4">Welcome to VIA Bridge</h1>
-      <p className="text-center text-muted-foreground mb-8">Bridge your BTC from Bitcoin to VIA network</p>
+      <p className="text-center text-[var(--color-muted-foreground)] mb-8">Bridge your BTC from Bitcoin to VIA network</p>
 
       <div className="flex justify-center mt-4 mb-6">
         <RainbowButton onClick={handleDeposit} disabled={loading} size="lg" className="w-full max-w-xs">
