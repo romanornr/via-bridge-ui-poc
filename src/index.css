@@ -71,6 +71,30 @@
   background-size: 200% auto;
 }
 
+/* Custom Rainbow Button Styles */
+.rainbow-button {
+  position: relative;
+  background: linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)));
+  background-size: 200% auto;
+  animation: rainbow 8s linear infinite;
+  z-index: 1;
+}
+
+.rainbow-button:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(0.8rem);
+  opacity: 0.7;
+  animation: rainbow 8s linear infinite;
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
