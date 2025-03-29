@@ -11,6 +11,7 @@ import { BigInt } from "core-js";
 import { hex, base64 } from '@scure/base'
 import { Button } from "@/components/ui/button";
 import { RainbowButton } from "@/components/magicui/rainbow-button";
+import { Copy as CopyIcon } from "lucide-react";
 
 // Configuration constants
 const TESTNET_API = "https://blockstream.info/testnet/api";
@@ -185,37 +186,117 @@ function App() {
   }
 
   return (
-    <div className="max-w-[600px] mx-auto mt-12 p-6 bg-background text-foreground rounded-lg shadow-md">
-      <h1 className="text-3xl font-bold text-center mb-4">Welcome to VIA Bridge</h1>
-      <p className="text-center text-muted-foreground mb-8">Bridge your BTC from Bitcoin to VIA network</p>
-
-      <div className="flex justify-center mt-4 mb-6">
-        <RainbowButton onClick={handleDeposit} disabled={loading} size="lg" className="w-full max-w-xs">
-          {loading ? "Processing..." : "Deposit BTC to VIA"}
-        </RainbowButton>
+    <div className="w-full min-h-screen bg-background flex flex-col pt-16 px-4">
+      {/* Logo or small icon could go here */}
+      <div className="mb-6 flex justify-center">
+        {/* <div className="h-12 w-12 rounded-full bg-violet-600 flex items-center justify-center"> */}
+          <span className="text-white font-bold text-lg">Via</span> 
+        {/* </div> */}
       </div>
 
-      {txId && (
-        <div className="mt-8 p-4 bg-green-900/20 rounded-md border border-green-900">
-          <p className="font-semibold text-green-400 mb-2">
-            ✅ Transaction Sent!
-          </p>
-          <a
-            href={`${BITCOIN_TESTNET_EXPLORER}${txId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
-          >
-            View on Block Explorer
-          </a>
-        </div>
-      )}
+      {/* Main card */}
+      <div className="w-full max-w-[800px] mx-auto bg-card/40 backdrop-blur-sm border border-border/20 rounded-lg  shadow-lg overflow-hidden">
+      {/* Header */}
+      <div className="p-7 text-center">
+        <h1 className="text-3xl font-bond text-foreground mb-2">VIA Bridge</h1>
+        <p className="text-muted-foreground">Bridge your BTC to VIA L2</p>
+      </div>
 
-      {error && (
-        <div className="mt-8 p-4 bg-red-900/20 rounded-md border border-red-900">
-          <p className="text-red-400">⚠️ {error}</p>
+      {/* Divider */}
+      <div className="h-px bg-border/30 mx-6"></div>
+
+      {/* content */}
+
+      <div className="p-6">
+        {/* Bridge panel here*/}
+
+        <div className="flex items-center gap-3">
+        <div className="text-muted-foreground text-sm mb-1 md:hidden">From</div>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center">
+            <span className="text-white font-bold">₿</span>
+          </div>
+          <div>
+            <div className="text-muted-foreground text-sm hidden md:block">From</div>
+            <div className="font-semibold">Bitcoin</div>
+          </div>
         </div>
-      )}
+      </div>
+
+      {/* Arrow */}
+      <div className="hidden md:block text-muted-foreground"></div>
+      <div className="h-px w-full bg-border/30 md:hidden"></div>
+
+      {/* To Via */}
+      <div className="flex items-center gap-3">
+        <div className="text-muted-foreground text-sm mb-1 md:hidden">To</div>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center">
+            <img src="/public/via-logo.png" alt="Via" className="w-full h-full object-cover" />
+          </div>
+          <div>
+            <div className="text-muted-foreground text-sm hidden md:block">To</div>
+            <div className="font-semibold">Via L2</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="h-px bg-border/30 my-4"></div>
+
+      {/* Amount */}
+      <div className="flex flex-sol sm:flex-row gap-2 sm:gap-6">
+        <div className="text-muted-foreground">Amount:</div>
+        <div className="font-medium">{SATS_AMOUNT_TO_BRIDGE} sats</div>
+        <div className="text-muted-foreground">+</div>
+        <div className="text-muted-foreground">{SATS_FEE} sats fee</div>
+      </div>
+      </div>
+
+      {/* Bridge address */}
+      <div className="space-y-4">
+        {/* VIA Bridge Address */}
+        <div>
+          <label className="text-sm font-medium mb-2 block">VIA Bridge Address</label>
+          <div className="flex items-cennter gap-2">
+            <div className="flex-1 p-3 rounded-md bg-input/30 backdrop-blur-sm border border-input overflow-x-auto">
+              <code className="text-sm font-mono text-foreground whitespace-nowrap">
+                {VIA_BRIDGE_ADDRESS}
+              </code>
+            </div>
+            <Button variant="outline" size="icon" className="h-10 w-10 bg-background/50 backdrop-blur-sm" onClick={() => navigator.clipboard.writeText(VIA_BRIDGE_ADDRESS)}>
+              <CopyIcon className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      {/* L2 Receiver Address */}
+      <div>
+        <label className="text-sm font-medium mb-2 block">L2 Receiver Address</label>
+        <div className="flex items-center gap-2">
+          <div className="flex-1 p-3 rounded-md bg-input/30 backdrop-blur-sm border border-input overflow-x-auto">
+            <code className="text-sm font-mono text-foreground white whitespace-nowrap">
+              {L2_RECEIVER_ADDRESS}
+            </code>
+          </div>
+          <Button variant="outline" size="icon" className="h-10 w-10 bg-background/50 backdrop-blur-sm" onClick={() => navigator.clipboard.writeText(L2_RECEIVER_ADDRESS)}>
+            <CopyIcon className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Rainbow Button */}
+      {/* Rainbow Button */}
+      <div className="mt-8 flex justify-center">
+        <RainbowButton onClick={handleDeposit} disabled={loading} size="lg" className="w-full max-w-md">{loading ? "Processing..." : "Deposit BTC to VIA"}</RainbowButton>
+      </div>
+
+      </div>
+
     </div>
   );
 }
