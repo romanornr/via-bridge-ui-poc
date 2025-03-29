@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VIA Bridgeeee </title>
+    <title>VIA Bridge</title>
+    <script>
+      // Force dark mode
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    </script>
   </head>
   <body>
     <div id="root"></div>

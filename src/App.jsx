@@ -184,9 +184,9 @@ function App() {
   }
 
   return (
-    <div className="max-w-[600px] mx-auto mt-12 p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-[600px] mx-auto mt-12 p-6 bg-background text-foreground rounded-lg shadow-md">
       <h1 className="text-3xl font-bold text-center mb-4">Welcome to VIA Bridge</h1>
-      <p className="text-center text-gray-600 mb-8">Bridge your BTC from Bitcoin to VIA network</p>
+      <p className="text-center text-muted-foreground mb-8">Bridge your BTC from Bitcoin to VIA network</p>
 
       <div className="flex justify-center mt-4 mb-6">
         <Button 
@@ -201,15 +201,15 @@ function App() {
       </div>
 
       {txId && (
-        <div className="mt-8 p-4 bg-green-50 rounded-md border border-green-200">
-          <p className="font-semibold text-green-700 mb-2">
+        <div className="mt-8 p-4 bg-green-900/20 rounded-md border border-green-900">
+          <p className="font-semibold text-green-400 mb-2">
             ✅ Transaction Sent!
           </p>
           <a
             href={`${BITCOIN_TESTNET_EXPLORER}${txId}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
+            className="text-blue-400 hover:underline"
           >
             View on Block Explorer
           </a>
@@ -217,8 +217,8 @@ function App() {
       )}
 
       {error && (
-        <div className="mt-8 p-4 bg-red-50 rounded-md border border-red-200">
-          <p className="text-red-700">⚠️ {error}</p>
+        <div className="mt-8 p-4 bg-red-900/20 rounded-md border border-red-900">
+          <p className="text-red-400">⚠️ {error}</p>
         </div>
       )}
     </div>
