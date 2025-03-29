@@ -230,11 +230,10 @@ function App() {
             <div className="flex items-center space-x-3 ml-auto">
               <div>
                 <div className="text-muted-foreground text-sm text-right">To</div>
-                <div ref={viaIconRef} className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center shadow-lg"></div>
+                <div ref={viaIconRef} className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                  <img src="/public/via-logo.png" alt="Via" className="w-full h-full object-cover" />
+                </div>
                 <div className="font-semibold text-right">Via L2</div>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center overflow-hidden">
-                <img src="/public/via-logo.png" alt="Via" className="w-full h-full object-cover" />
               </div>
             </div>
 
