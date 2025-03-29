@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      // If you have path aliases in your project, add them here
+      '@': path.resolve(__dirname, './src')
     },
     extensions: ['.js', '.jsx', '.json']
   },

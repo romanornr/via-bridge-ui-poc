@@ -9,6 +9,7 @@ import axios from "axios";
 import * as btc from "@scure/btc-signer";
 import { BigInt } from "core-js";
 import { hex, base64 } from '@scure/base'
+import { Button } from "@/components/ui/button";
 
 // Configuration constants
 const TESTNET_API = "https://blockstream.info/testnet/api";
@@ -183,39 +184,32 @@ function App() {
   }
 
   return (
-    <div style={{ maxWidth: "600px", margin: "50px auto", padding: "20px", textAlign: "center" }}>
-      <h1>Welcome to VIA Bridge</h1>
-      <p>Bridge your BTC from Bitcoin to VIA network</p>
-      
-      <div style={{ margin: "30px 0" }}>
-        <button 
+    <div className="max-w-[600px] mx-auto mt-12 p-6 bg-white rounded-lg shadow-md">
+      <h1 className="text-3xl font-bold text-center mb-4">Welcome to VIA Bridge</h1>
+      <p className="text-center text-gray-600 mb-8">Bridge your BTC from Bitcoin to VIA network</p>
+
+      <div className="flex justify-center mt-4 mb-6">
+        <Button 
           onClick={handleDeposit} 
           disabled={loading}
-          style={{
-            backgroundColor: "#0052FF",
-            color: "white",
-            padding: "12px 24px",
-            border: "none",
-            borderRadius: "4px",
-            fontSize: "16px",
-            cursor: loading ? "not-allowed" : "pointer",
-            opacity: loading ? 0.7 : 1
-          }}
+          variant="default"
+          size="lg"
+          className="w-full max-w-xs"
         >
-          {loading ? "Processing..." : "Deposit"}
-        </button>
+          {loading ? "Processing..." : "Deposit BTC to VIA"}
+        </Button>
       </div>
 
       {txId && (
-        <div style={{ marginTop: "20px", padding: "15px", backgroundColor: "#E8F5E9", borderRadius: "4px" }}>
-          <p style={{ fontWeight: "bold", color: "#2E7D32" }}>
+        <div className="mt-8 p-4 bg-green-50 rounded-md border border-green-200">
+          <p className="font-semibold text-green-700 mb-2">
             ✅ Transaction Sent!
           </p>
           <a
             href={`${BITCOIN_TESTNET_EXPLORER}${txId}`}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "#0052FF" }}
+            className="text-blue-600 hover:underline"
           >
             View on Block Explorer
           </a>
@@ -223,8 +217,8 @@ function App() {
       )}
 
       {error && (
-        <div style={{ marginTop: "20px", padding: "15px", backgroundColor: "#FFEBEE", borderRadius: "4px" }}>
-          <p style={{ color: "#C62828" }}>⚠️ {error}</p>
+        <div className="mt-8 p-4 bg-red-50 rounded-md border border-red-200">
+          <p className="text-red-700">⚠️ {error}</p>
         </div>
       )}
     </div>
