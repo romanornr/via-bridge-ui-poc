@@ -10,6 +10,7 @@ import * as btc from "@scure/btc-signer";
 import { BigInt } from "core-js";
 import { hex, base64 } from '@scure/base'
 import { Button } from "@/components/ui/button";
+import { RainbowButton } from "@/components/magicui/rainbow-button";
 
 // Configuration constants
 const TESTNET_API = "https://blockstream.info/testnet/api";
@@ -189,15 +190,9 @@ function App() {
       <p className="text-center text-muted-foreground mb-8">Bridge your BTC from Bitcoin to VIA network</p>
 
       <div className="flex justify-center mt-4 mb-6">
-        <Button 
-          onClick={handleDeposit} 
-          disabled={loading}
-          variant="default"
-          size="lg"
-          className="w-full max-w-xs"
-        >
+        <RainbowButton onClick={handleDeposit} disabled={loading} size="lg" className="w-full max-w-xs">
           {loading ? "Processing..." : "Deposit BTC to VIA"}
-        </Button>
+        </RainbowButton>
       </div>
 
       {txId && (

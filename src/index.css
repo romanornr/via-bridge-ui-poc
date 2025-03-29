@@ -21,6 +21,13 @@
   --input: 214.3 31.8% 91.4%;
   --ring: 221.2 83.2% 53.3%;
   --radius: 0.5rem;
+  
+  /* Rainbow button colors */
+  --color-1: 345 100% 50%;
+  --color-2: 240 100% 50%;
+  --color-3: 280 100% 50%;
+  --color-4: 50 100% 50%;
+  --color-5: 160 100% 50%;
 }
 
 .dark {
@@ -43,9 +50,34 @@
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
   --ring: 224.3 76.3% 48%;
+  
+  /* Rainbow button colors - same as light mode */
+  --color-1: 345 100% 50%;
+  --color-2: 240 100% 50%;
+  --color-3: 280 100% 50%;
+  --color-4: 50 100% 50%;
+  --color-5: 160 100% 50%;
+}
+
+/* Add animation for rainbow effect */
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-rainbow {
+  animation: rainbow 8s linear infinite;
+  background-size: 200% auto;
 }
 
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-}
+} 
