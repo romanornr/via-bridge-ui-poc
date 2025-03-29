@@ -240,13 +240,14 @@ function App() {
 
             {/* Animated Beam */}
             <AnimatedBeam
-              duration={2.5}
+              duration={2}
               containerRef={containerRef}
               fromRef={bitcoinIconRef}
               toRef={viaIconRef}
-              className="opacity-50"
-              gradientStartColor="rgba(245, 158, 11, 0.8)"
-              gradientStopColor="rgba(124, 58, 237, 0.8)"
+              pathWidth={4}
+              pathOpacity={0.2}
+              gradientStartColor="rgba(255, 151, 0, 1)"
+              gradientStopColor="rgba(235, 149, 237, 1)"
             />
           </div>
 
