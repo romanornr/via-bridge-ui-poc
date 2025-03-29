@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   signTransaction,
   request,
@@ -12,6 +12,7 @@ import { hex, base64 } from '@scure/base'
 import { Button } from "@/components/ui/button";
 import { RainbowButton } from "@/components/magicui/rainbow-button";
 import { Copy as CopyIcon } from "lucide-react";
+import { AnimatedBeam } from "@/components/magicui/animated-beam";
 
 // Configuration constants
 const TESTNET_API = "https://blockstream.info/testnet/api";
@@ -25,6 +26,11 @@ function App() {
   const [txId, setTxId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // References for the animated beam
+  const containerRef = useRef(null);
+  const bitcoinIconRef = useRef(null);
+  const viaIconRef = useRef(null);
 
   // Connect to Xverse wallet and get user address
   async function connectWallet() {
@@ -207,15 +213,15 @@ function App() {
 
         {/* content */}
         <div className="p-6 space-y-6">
-          {/* From/To secion*/}
-          <div className="flex items-start space-x-4">
+          {/* From/To secion* with beam animation */}
+          <div className="relative flex justify-between items-center py-4" ref={containerRef}>
             {/* From Bitcoin */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold">
-                ₿
-              </div>
               <div>
                 <div className="text-muted-foreground text-sm hidden md:block">From</div>
+                <div ref={bitcoinIconRef} className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold shadow-lg">
+                  <span className="font-semibold">₿</span>
+                </div>
                 <div className="font-semibold">Bitcoin</div>
               </div>
             </div>
@@ -224,12 +230,24 @@ function App() {
             <div className="flex items-center space-x-3 ml-auto">
               <div>
                 <div className="text-muted-foreground text-sm text-right">To</div>
+                <div ref={viaIconRef} className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center shadow-lg"></div>
                 <div className="font-semibold text-right">Via L2</div>
               </div>
               <div className="w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center overflow-hidden">
                 <img src="/public/via-logo.png" alt="Via" className="w-full h-full object-cover" />
               </div>
             </div>
+
+            {/* Animated Beam */}
+            <AnimatedBeam
+              duration={2.5}
+              containerRef={containerRef}
+              fromRef={bitcoinIconRef}
+              toRef={viaIconRef}
+              className="opacity-50"
+              gradientStartColor="rgba(245, 158, 11, 0.8)"
+              gradientStopColor="rgba(124, 58, 237, 0.8)"
+            />
           </div>
 
           {/* Amount */}
